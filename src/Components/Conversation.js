@@ -1,15 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { myContext } from "./MainContainer";
 import axios from "axios";
+import { refreshSidebarFun } from "../Features/refreshSidebar";
 
 const Conversation = () => {
   const user = JSON.parse(localStorage.getItem("userData")).data;
   const navigate = useNavigate();
+  const dispatch= useDispatch();
   const isLight = useSelector((state) => state.themeKey);
-  const { refresh, setRefresh } = useContext(myContext);
   
+  const refresh = useSelector((state)=>state.refreshKey)
 
   const [conversations, setConversations] = useState([]);
   console.log("fetched")
@@ -49,7 +50,7 @@ const Conversation = () => {
               key={index}
               onClick={() => {
                 console.log("Refresh fired from sidebar");
-                setRefresh(!refresh);
+                dispatch(refreshSidebarFun())
               }}
             >
               <div

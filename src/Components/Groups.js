@@ -11,7 +11,7 @@ import { refreshSidebarFun } from "../Features/refreshSidebar";
 import { useNavigate } from "react-router-dom";
 
 const Groups = () => {
-  const { refresh, setRefresh } = useContext(myContext);
+  const refresh = useSelector((state)=>state.refreshKey);
   const isLight = useSelector((state) => state.themeKey);
   const dispatch = useDispatch();
   const [groups, SetGroups] = useState([]);
@@ -64,7 +64,7 @@ const Groups = () => {
           <IconButton
             className={"icon" + (isLight ? "" : " dark")}
             onClick={() => {
-              setRefresh(!refresh);
+              dispatch(refreshSidebarFun())
             }}
           >
             <Refresh />

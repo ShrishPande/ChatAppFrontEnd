@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./myStyles.css";
-import { Refresh, RefreshOutlined, Search } from "@mui/icons-material";
+import { RefreshOutlined, Search } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import Logo from "../images/live-chat.png";
 import { useDispatch, useSelector } from "react-redux";
@@ -61,7 +61,7 @@ const Users = () => {
             className={isLight?"":"dark"}
             onClick={()=>{
               setRefresh(!refresh)
-              
+
             }}
           >
             <RefreshOutlined/>

@@ -16,8 +16,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTheme } from "../Features/themeSlice";
 import { AnimatePresence, motion } from "framer-motion";
-import axios from "axios";
-import { myContext } from "./MainContainer";
 import Conversation from "./Conversation";
 
 const SideBar = () => {
