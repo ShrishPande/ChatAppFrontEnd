@@ -13,8 +13,8 @@ const Conversation = () => {
   const refresh = useSelector((state)=>state.refreshKey)
 
   const [conversations, setConversations] = useState([]);
-  console.log("fetched")
   useEffect(() => {
+    console.log("fetched")
     console.log(refresh)
     const config = {
       headers: {

@@ -98,8 +98,10 @@ const Users = () => {
                       userId:user._id
                     },
                     config
+                  ).then(
+
+                    dispatch(refreshSidebarFun())
                   )
-                  dispatch(refreshSidebarFun());
                 }}
               >
                 <p className={"conIcon" + (isLight ? "" : " conIconDark")}>{(user.name)[0].toUpperCase()}</p>
