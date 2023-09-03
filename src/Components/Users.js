@@ -61,6 +61,7 @@ const Users = () => {
             className={isLight?"":"dark"}
             onClick={()=>{
               setRefresh(!refresh)
+              
             }}
           >
             <RefreshOutlined/>

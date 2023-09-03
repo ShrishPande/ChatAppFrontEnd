@@ -9,9 +9,12 @@ const Conversation = () => {
   const navigate = useNavigate();
   const isLight = useSelector((state) => state.themeKey);
   const { refresh, setRefresh } = useContext(myContext);
+  
 
   const [conversations, setConversations] = useState([]);
+  console.log("fetched")
   useEffect(() => {
+    console.log(refresh)
     const config = {
       headers: {
         Authorization: `Bearer ${user.token}`,

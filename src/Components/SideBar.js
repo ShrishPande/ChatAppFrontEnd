@@ -22,12 +22,10 @@ import Conversation from "./Conversation";
 
 const SideBar = () => {
   const isLight = useSelector((state) => state.themeKey);
-  const user = JSON.parse(localStorage.getItem("userData")).data;
 
   const [isMobileScreen, setIsMobileScreen] = useState(
     window.screen.width < 640
   );
-  const { refresh, setRefresh } = useContext(myContext);
   const [showConversations, setShowConversations] = useState(false);
 
   const setScreen = () => {
@@ -39,22 +37,7 @@ const SideBar = () => {
     return () => window.removeEventListener("resize", setScreen);
   }, [setScreen]);
 
-  const [conversations, setConversations] = useState([]);
-  useEffect(() => {
-
-    const config = {
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    };
-
-    axios.get("https://chatappbackend-gkwr.onrender.com/chat/", config).then((response) => {
-      setConversations(response.data);
-      console.log(response.data)
-    });
-
-  },[refresh]);
-
+  
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
