@@ -6,7 +6,7 @@ export const refreshSidebar = createSlice({
   reducers: {
     refreshSidebarFun: (state) => {
       console.log("Refreshing sidebar from Redux");
-      return (state = !state);
+      return !state
     },
   },
 });
