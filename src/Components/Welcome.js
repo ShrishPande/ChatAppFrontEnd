@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom'
 
 const Welcome = () => {
   const userData = JSON.parse(localStorage.getItem("userData"))
-  const nav = useNavigate()
+  const navigate = useNavigate()
   console.log(userData)
   if(!userData){
     console.log("User not authorized")
-    nav("/")
+    navigate("/")
   }
   return (
     <div className='welcomeContainer'>

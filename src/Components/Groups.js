@@ -5,7 +5,6 @@ import { IconButton } from "@mui/material";
 import Logo from "../images/live-chat.png";
 import { useDispatch, useSelector } from "react-redux";
 import { AnimatePresence, motion } from "framer-motion";
-import { myContext } from "./MainContainer";
 import axios from "axios";
 import { refreshSidebarFun } from "../Features/refreshSidebar";
 import { useNavigate } from "react-router-dom";

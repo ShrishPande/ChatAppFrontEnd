@@ -6,17 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 export const myContext = createContext();
 
 const MainContainer = () => {
-  const dispatch = useDispatch();
   const isLight = useSelector((state) => state.themeKey);
   const [refresh, setRefresh] = useState(true);
   const nav = useNavigate();
-  useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem("userData"));
-    if (!userData) {
-      console.log("User not authorized");
-      nav("/");
-    }
-  });
+
+  const userData = JSON.parse(localStorage.getItem("userData"));
+  if (!userData) {
+    console.log("User not authorized");
+    nav("/");
+  }
+
   return (
     <div className={"mainContainer" + (isLight ? "" : " mainDark")}>
       <myContext.Provider value={{ refresh: refresh, setRefresh: setRefresh }}>

@@ -12,7 +12,7 @@ import { io } from "socket.io-client";
 
 const ENDPOINT = "https://chatappbackend-gkwr.onrender.com";
 
-let socket, chat;
+let socket;
 
 const ChatArea = () => {
   const userData = JSON.parse(localStorage.getItem("userData"));
