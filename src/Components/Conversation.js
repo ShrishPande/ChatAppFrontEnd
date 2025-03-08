@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { refreshSidebarFun } from "../Features/refreshSidebar";
+const config = require("../configuration.json")
+const endpoint = config.endpoint;
 
 const Conversation = () => {
   const user = JSON.parse(localStorage.getItem("userData")).data;
@@ -22,7 +24,7 @@ const Conversation = () => {
       },
     };
 
-    axios.get("https://chatappbackend-gkwr.onrender.com/chat/", config).then((response) => {
+    axios.get(endpoint + "/chat/", config).then((response) => {
       setConversations(response.data);
       console.log(response.data);
     });

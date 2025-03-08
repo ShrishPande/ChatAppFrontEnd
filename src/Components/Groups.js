@@ -8,6 +8,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import axios from "axios";
 import { refreshSidebarFun } from "../Features/refreshSidebar";
 import { useNavigate } from "react-router-dom";
+const config = require("../configuration.json")
+const endpoint = config.endpoint;
 
 const Groups = () => {
   const refresh = useSelector((state)=>state.refreshKey);
@@ -30,8 +32,8 @@ const Groups = () => {
     };
 
     axios
-      .get("https://chatappbackend-gkwr.onrender.com/chat/fetchGroups", config)
-      .then((response) => {
+      .get(endpoint + "/chat/fetchGroups", config)
+   .then((response) => {
         console.log("Group Data from API ", response.data);
         SetGroups(response.data);
       });
@@ -94,7 +96,7 @@ const Groups = () => {
                     },
                   };
                   axios.put(
-                    "https://chatappbackend-gkwr.onrender.com/chat/addSelfToGroup",
+                    endpoint + "/chat/addSelfToGroup",
                     {
                       chatId:group._id,
                       userId: user._id,

@@ -8,6 +8,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { refreshSidebarFun } from "../Features/refreshSidebar";
+const config = require("../configuration.json")
+const endpoint = config.endpoint;
 
 const Users = () => {
   const isLight = useSelector((state) => state.themeKey);
@@ -35,8 +37,9 @@ const Users = () => {
       }
     }
 
-    axios.get("https://chatappbackend-gkwr.onrender.com/user/fetchusers",config).then((data)=>{
-      setUsers(data.data)
+    axios.get(endpoint + "/user/fetchusers",config).then((res)=>{
+
+      setUsers(res.data.users)
     })
   },[refresh])
   return (
@@ -93,7 +96,7 @@ const Users = () => {
                     }
                   }
                   axios.post(
-                    "https://chatappbackend-gkwr.onrender.com/chat/",
+                    endpoint + "/chat/",
                     {
                       userId:user._id
                     },

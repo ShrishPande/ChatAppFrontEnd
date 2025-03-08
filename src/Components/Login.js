@@ -3,6 +3,8 @@ import Logo from "../images/live-chat.png";
 import { Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+const config = require("../configuration.json")
+const endpoint = config.endpoint;
 
 const Login = () => {
   const [isLoginPage, setIsLoginPage] = useState(true);
@@ -32,7 +34,7 @@ const Login = () => {
         }
       }
       const response = await axios.post(
-        "https://chatappbackend-gkwr.onrender.com/user/login/",
+        endpoint + "/user/login/",
         data,
         config
       )
@@ -59,7 +61,7 @@ const Login = () => {
       };
 
       const response = await axios.post(
-        "https://chatappbackend-gkwr.onrender.com/user/register/",
+        endpoint + "/user/register/",
         data,
         config
       );
@@ -117,15 +119,15 @@ const Login = () => {
         />
 
         <Button
-          onClick={isLoginPage?loginHandler:signUpHandler}
+          onClick={isLoginPage ? loginHandler : signUpHandler}
           variant="outlined"
           color="success"
           disabled={loading}
         >
-          
-          {loading?"Loading":(isLoginPage ? "Login" : "Sign Up")}
-        </Button>
 
+          {loading ? "Loading" : (isLoginPage ? "Login" : "Sign Up")}
+        </Button>
+        
         {isLoginPage ? (
           <p>
             Don't have an Account?{" "}
@@ -155,6 +157,9 @@ const Login = () => {
             </span>
           </p>
         )}
+        <div className="login-message">
+         {isLoginPage ? logInStatus.msg :signInStatus.msg}
+        </div>
       </div>
     </div>
   );

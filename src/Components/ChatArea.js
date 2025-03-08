@@ -9,9 +9,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { myContext } from "./MainContainer";
 import { io } from "socket.io-client";
+const config = require("../configuration.json")
 
-const ENDPOINT = "https://chatappbackend-gkwr.onrender.com";
-
+const endpoint = config.endpoint;
 let socket;
 
 const ChatArea = () => {
@@ -45,7 +45,7 @@ const ChatArea = () => {
     };
     axios
       .post(
-        "https://chatappbackend-gkwr.onrender.com/message/",
+        endpoint + "/message/",
         {
           content: messageContent,
           chatId: chat_id,
@@ -63,7 +63,7 @@ const ChatArea = () => {
 
   useEffect(() => {
     console.log("connected");
-    socket = io(ENDPOINT);
+    socket = io(endpoint);
     socket.emit("setup", userData);
     socket.on("connection", () => {
       setSocketConnectionStatus(!socketConnectionStatus);
@@ -91,7 +91,7 @@ const ChatArea = () => {
       },
     };
     axios
-      .get("https://chatappbackend-gkwr.onrender.com/message/" + chat_id, config)
+      .get(endpoint + "/message/" + chat_id, config)
       .then(({ data }) => {
         setAllMessages(data);
         setloaded(true);

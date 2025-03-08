@@ -12,6 +12,8 @@ import {
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+const config = require("../configuration.json")
+const endpoint = config.endpoint;
 
 function CreateGroups() {
   const lightTheme = useSelector((state) => state.themeKey);
@@ -44,7 +46,7 @@ function CreateGroups() {
     };
 
     axios.post(
-      "https://chatappbackend-gkwr.onrender.com/chat/createGroup",
+      endpoint + "/chat/createGroup",
       {
         name: groupName,
       },
