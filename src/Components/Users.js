@@ -8,10 +8,19 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { refreshSidebarFun } from "../Features/refreshSidebar";
-const config = require("../configuration.json")
-const endpoint = config.endpoint;
 
 const Users = () => {
+   const [endpoint, setEndpoint] = useState("");
+    useEffect(() => {
+      fetch('/config/configuration.json')
+        .then(res => res.json())
+        .then(data => {
+          console.log('Config:', data);
+          setEndpoint(data.endpoint);
+        
+          // set it in state, context, etc.
+        });
+    }, []);
   const isLight = useSelector((state) => state.themeKey);
   const [refresh,setRefresh]= useState(true)
   const [users,setUsers] = useState([])

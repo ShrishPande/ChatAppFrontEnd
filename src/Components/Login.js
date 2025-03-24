@@ -3,10 +3,19 @@ import Logo from "../images/live-chat.png";
 import { Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-const config = require("../configuration.json")
-const endpoint = config.endpoint;
 
 const Login = () => {
+   const [endpoint, setEndpoint] = useState("");
+    useEffect(() => {
+      fetch('/config/configuration.json')
+        .then(res => res.json())
+        .then(data => {
+          console.log('Config:', data);
+          setEndpoint(data.endpoint);
+        
+          // set it in state, context, etc.
+        });
+    }, []);
   const [isLoginPage, setIsLoginPage] = useState(true);
   const [data, setData] = useState({ name: "", email: "", password: "" });
   const [loading, setLoading] = useState(false);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DoneOutlineRoundedIcon from "@mui/icons-material/DoneOutlineRounded";
 import {
   Button,
@@ -12,10 +12,20 @@ import {
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-const config = require("../configuration.json")
-const endpoint = config.endpoint;
+
 
 function CreateGroups() {
+   const [endpoint, setEndpoint] = useState("");
+    useEffect(() => {
+      fetch('/config/configuration.json')
+        .then(res => res.json())
+        .then(data => {
+          console.log('Config:', data);
+          setEndpoint(data.endpoint);
+        
+          // set it in state, context, etc.
+        });
+    }, []);
   const lightTheme = useSelector((state) => state.themeKey);
   const userData = JSON.parse(localStorage.getItem("userData"));
   // console.log("Data from LocalStorage : ", userData);

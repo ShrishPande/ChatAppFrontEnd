@@ -8,10 +8,19 @@ import { AnimatePresence, motion } from "framer-motion";
 import axios from "axios";
 import { refreshSidebarFun } from "../Features/refreshSidebar";
 import { useNavigate } from "react-router-dom";
-const config = require("../configuration.json")
-const endpoint = config.endpoint;
 
 const Groups = () => {
+   const [endpoint, setEndpoint] = useState("");
+    useEffect(() => {
+      fetch('/config/configuration.json')
+        .then(res => res.json())
+        .then(data => {
+          console.log('Config:', data);
+          setEndpoint(data.endpoint);
+        
+          // set it in state, context, etc.
+        });
+    }, []);
   const refresh = useSelector((state)=>state.refreshKey);
   const isLight = useSelector((state) => state.themeKey);
   const dispatch = useDispatch();

@@ -9,12 +9,20 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { myContext } from "./MainContainer";
 import { io } from "socket.io-client";
-const config = require("../configuration.json")
-
-const endpoint = config.endpoint;
 let socket;
-
 const ChatArea = () => {
+  const [endpoint, setEndpoint] = useState("");
+  useEffect(() => {
+    fetch('/config/configuration.json')
+      .then(res => res.json())
+      .then(data => {
+        console.log('Config:', data);
+        setEndpoint(data.endpoint);
+      
+        // set it in state, context, etc.
+      });
+  }, []);
+  
   const userData = JSON.parse(localStorage.getItem("userData"));
   const nav = useNavigate();
   if (!userData) {
